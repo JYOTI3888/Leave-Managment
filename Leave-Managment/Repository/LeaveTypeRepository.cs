@@ -19,7 +19,7 @@ namespace Leave_Managment.Repository
         {
             _db.leaveTypes.Add(entity);
             return save();
-           
+
         }
 
         public bool Delete(LeaveType entity)
@@ -30,7 +30,7 @@ namespace Leave_Managment.Repository
 
         public ICollection<LeaveType> FindAll()
         {
-           return  _db.leaveTypes.ToList();
+            return _db.leaveTypes.ToList();
         }
 
         public LeaveType FindById(int id)
@@ -43,10 +43,14 @@ namespace Leave_Managment.Repository
         {
             throw new NotImplementedException();
         }
-
+        public bool IsExsits(int id)
+        {
+            var exsits = _db.leaveTypes.Any(x=>x.Id == id);
+            return exsits;
+        }
         public bool save()
         {
-           var res = _db.SaveChanges();
+            var res = _db.SaveChanges();
             return res > 0;
         }
 
